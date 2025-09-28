@@ -65,13 +65,17 @@ describe('tikhonovBidAdapter', function () {
       expect(result).to.be.an('array').that.is.not.empty;
 
       const bidRes = result[0];
-      expect(bidRes.requestId).to.equal('123');
-      expect(bidRes.cpm).to.equal(1.5);
-      expect(bidRes.width).to.equal(300);
-      expect(bidRes.height).to.equal(250);
+
+      expect(bidRes).to.deep.include({
+        requestId: '123',
+        cpm: 1.5,
+        width: 300,
+        height: 250,
+        creativeId: 'creative-1',
+        currency: 'USD',
+      });
+
       expect(bidRes.ad).to.include('Test Ad');
-      expect(bidRes.creativeId).to.equal('creative-1');
-      expect(bidRes.currency).to.equal('USD');
       expect(bidRes.meta.advertiserDomains).to.deep.equal(['example.com']);
     });
 

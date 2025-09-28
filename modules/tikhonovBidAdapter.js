@@ -1,5 +1,5 @@
-import { registerBidder } from '../src/adapters/bidderFactory.js';
-import { BANNER } from '../src/mediaTypes.js';
+import {registerBidder} from '../src/adapters/bidderFactory.js';
+import {BANNER} from '../src/mediaTypes.js';
 
 const BIDDER_CODE = 'tikhonov';
 const AUCTION_ENDPOINT = 'https://prebid.tikhonov.ua/auction';
@@ -8,9 +8,7 @@ export const spec = {
   code: BIDDER_CODE,
   supportedMediaTypes: [BANNER],
 
-  isBidRequestValid: (bid) => {
-    return !!(bid.params && bid.params.placementId);
-  },
+  isBidRequestValid: bid => !!bid.params?.placementId,
 
   buildRequests: (validBidRequests, bidderRequest) => {
     return validBidRequests.map(bid => {
